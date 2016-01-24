@@ -1,6 +1,20 @@
 {% ckan_extends %}
 
-{# You could remove 'free extras' from the package form like this, but we keep them for this example's tests.
-  {% block custom_fields %}
-  {% endblock %}
-#}
+{% block package_metadata_fields %}
+  {{ form.input('due_date',
+                type='date',
+                classes=['control-full', 'control-medium'],
+                label=_('Dataset due date'),
+                id='field-due_date',
+                value=data.due_date,
+                error=errors.due_date)
+  }}
+
+  {{ form.markdown('due_date_info',
+                   id='field-due_date_info',
+                   label=_('Due date info'),
+                   placeholder=_('Explanation why this dataset expires on that due date'),
+                   value=data.due_date_info,
+                   error=errors.due_date_info)
+  }}
+{% endblock %}

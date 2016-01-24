@@ -1,38 +1,55 @@
 import ckan.plugins as p
 import ckan.plugins.toolkit as tk
 
+import time
+import datetime
+
+
+def dataset_expired(date):
+    # TODO: Fixme - make anoter helper that decides if time check should be done
+    if date.strip() == "":
+        return False
+
+    today = datetime.date.today()
+    parsed = time.strptime(date, '%Y-%m-%d')
+    due_date = datetime.date(parsed.tm_year, parsed.tm_mon, parsed.tm_mday)
+
+    return today > due_date
+
 
 class ExtrafieldsPlugin(p.SingletonPlugin, tk.DefaultDatasetForm):
     p.implements(p.IConfigurer)
     p.implements(p.IDatasetForm)
+    p.implements(p.ITemplateHelpers)
+
+    def _modify_package_schema(self, schema):
+        schema.update({
+            'due_date': [tk.get_validator('ignore_missing'),
+                         tk.get_converter('convert_to_extras')],
+            'due_date_info': [tk.get_validator('ignore_missing'),
+                              tk.get_converter('convert_to_extras')]
+        })
+
+        return schema
 
     def create_package_schema(self):
-        schema = super(ExampleIDatasetFormPlugin, self).create_package_schema()
-        schema.update({
-            'dataset_due_date': [tk.get_validator('ignore_missing'),
-                                 tk.get_converter('convert_to_extras')],
-            'dataset_due_date_info': [tk.get_validator('ignore_missing'),
-                                      tk.get_converter('convert_to_extras')]
-        })
+        schema = super(ExtrafieldsPlugin, self).create_package_schema()
+        schema = self._modify_package_schema(schema)
         return schema
 
     def update_package_schema(self):
-        schema = super(ExampleIDatasetFormPlugin, self).update_package_schema()
-        schema.update({
-            'dataset_due_date': [tk.get_validator('ignore_missing'),
-                                 tk.get_converter('convert_to_extras')],
-            'dataset_due_date_info': [tk.get_validator('ignore_missing'),
-                                      tk.get_converter('convert_to_extras')]
-        })
+        schema = super(ExtrafieldsPlugin, self).update_package_schema()
+        schema = self._modify_package_schema(schema)
         return schema
 
     def show_package_schema(self):
-        schema = super(ExampleIDatasetFormPlugin, self).show_package_schema()
+        schema = super(ExtrafieldsPlugin, self).show_package_schema()
         schema.update({
-            'dataset_due_date': [tk.get_validator('ignore_missing'),
-                                 tk.get_converter('convert_from_extras')],
-            'dataset_due_date_info': [tk.get_validator('ignore_missing'),
-                                      tk.get_converter('convert_from_extras')]
+            'due_date': [tk.get_converter('convert_from_extras'),
+                         tk.get_validator('ignore_missing')],
+            'due_date_info': [tk.get_converter('convert_from_extras'),
+                              tk.get_validator('ignore_missing')],
+
         })
         return schema
 
@@ -50,3 +67,10 @@ class ExtrafieldsPlugin(p.SingletonPlugin, tk.DefaultDatasetForm):
         tk.add_template_directory(config_, 'templates')
         tk.add_public_directory(config_, 'public')
         tk.add_resource('fanstatic', 'extrafields')
+
+    def get_helpers(self):
+        helpers = {
+            'extrafields_dataset_expired': dataset_expired
+        }
+
+        return helpers

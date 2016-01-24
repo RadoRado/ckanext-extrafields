@@ -1,17 +1,17 @@
 {% ckan_extends %}
 
 {% block extras %}
-  {% if pkg_dict.dataset_due_date %}
+  {% if pkg_dict.due_date %}
     <tr>
       <th scope="row" class="dataset-label">{{ _("Dataset due date") }}</th>
-      <td class="dataset-details">{{ pkg_dict.dataset_due_date }}</td>
+      <td class="dataset-details">{{ pkg_dict.due_date }}</td>
     </tr>
   {% endif %}
 
-  {% if pkg_dict.dataset_due_date_info %}
+  {% if pkg_dict.due_date_info %}
     <tr>
       <th scope="row" class="dataset-label">{{ _("Dataset due date info") }}</th>
-      <td class="dataset-details">{{ pkg_dict.dataset_due_date_info }}</td>
+      <td class="dataset-details">{{ pkg_dict.due_date_info }}</td>
     </tr>
   {% endif %}
 {% endblock %}

@@ -1,5 +1,25 @@
 {% ckan_extends %}
 
 {% block package_additional_info %}
-  <h1>Rado plugs in here</h1>
+  {% if pkg.due_date %}
+      {% if h.extrafields_dataset_expired(pkg.due_date) %}
+        <div class="alert-danger">
+          {# TODO: strftime for due_date #}
+          <p>{% trans %}This dataset has expired since{% endtrans %}: {{ pkg.due_date }}.</p>
+
+          {% if pkg.due_date_info %}
+            <p>{% trans %}Here is the explanation: {% endtrans %}</p>
+            <p>{{ pkg.due_date_info }}
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="alert-success">
+         <p>
+         {% trans %}This dataset is fresh. Check due date in addition info {% endtrans %}
+         </p>
+        </div>
+      {% endif %}
+  {% endif %}
+
+  {{ super() }}
 {% endblock %}
