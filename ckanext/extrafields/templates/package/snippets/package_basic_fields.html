@@ -1,5 +1,19 @@
 {% ckan_extends %}
 
 {% block package_basic_fields_custom %}
-  <h1>Rado plugs in here</h1>
+  {{ form.input('dataset_due_date',
+                type='date',
+                classes=['control-full', 'control-medium'],
+                label=_('Dataset due date'),
+                id='field-dataset_due_date',
+                value=data.dataset_due_date,
+                error=errors.dataset_due_date)
+  }}
+
+  {{ form.markdown('dataset_due_date_info',
+                   label=_('Due date info'),
+                   placeholder=_('Explanation why this dataset expires on that due date'),
+                   value=data.dataset_due_date_info,
+                   error=errors.dataset_due_date_info)
+  }}
 {% endblock %}
