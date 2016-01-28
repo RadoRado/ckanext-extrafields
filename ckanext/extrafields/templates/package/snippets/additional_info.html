@@ -1,17 +1,24 @@
 {% ckan_extends %}
 
 {% block extras %}
-  {% if pkg_dict.due_date %}
+  {% if pkg_dict.compiled_at %}
     <tr>
-      <th scope="row" class="dataset-label">{{ _("Dataset due date") }}</th>
-      <td class="dataset-details">{{ pkg_dict.due_date }}</td>
+      <th scope="row" class="dataset-label">{{ _("Compiled at") }}</th>
+      <td class="dataset-details">{{ h.extrafields_dateformat(pkg_dict.compiled_at) }}</td>
     </tr>
   {% endif %}
 
-  {% if pkg_dict.due_date_info %}
+  {% if pkg_dict.expires_on %}
     <tr>
-      <th scope="row" class="dataset-label">{{ _("Dataset due date info") }}</th>
-      <td class="dataset-details">{{ pkg_dict.due_date_info }}</td>
+      <th scope="row" class="dataset-label">{{ _("Expires on") }}</th>
+      <td class="dataset-details">{{ h.extrafields_dateformat(pkg_dict.expires_on) }}</td>
+    </tr>
+  {% endif %}
+
+  {% if pkg_dict.expiration_info %}
+    <tr>
+      <th scope="row" class="dataset-label">{{ _("Expiration info") }}</th>
+      <td class="dataset-details">{{ pkg_dict.expiration_info }}</td>
     </tr>
   {% endif %}
 {% endblock %}

@@ -1,33 +1,36 @@
 import ckan.plugins as p
 import ckan.plugins.toolkit as tk
-
-import time
-import datetime
+from template_helpers import TemplateHelpers
 
 
-def dataset_expired(date):
-    # TODO: Fixme - make anoter helper that decides if time check should be done
-    if date.strip() == "":
-        return False
+def either_compiled_at_or_expires_on(key,
+                                     flattened_data,
+                                     errors,
+                                     context):
+    keys = [('compiled_at',), ('expires_on',)]
+    present_keys = filter(lambda key: flattened_data[key].strip() != "", keys)
 
-    today = datetime.date.today()
-    parsed = time.strptime(date, '%Y-%m-%d')
-    due_date = datetime.date(parsed.tm_year, parsed.tm_mon, parsed.tm_mday)
-
-    return today > due_date
+    if len(present_keys) == 0:
+        raise tk.Invalid('Either compiled_at or expires_on must be present')
 
 
-class ExtrafieldsPlugin(p.SingletonPlugin, tk.DefaultDatasetForm):
+class ExtrafieldsPlugin(p.SingletonPlugin,
+                        tk.DefaultDatasetForm,
+                        TemplateHelpers):
     p.implements(p.IConfigurer)
     p.implements(p.IDatasetForm)
     p.implements(p.ITemplateHelpers)
+    p.implements(p.IValidators)
 
     def _modify_package_schema(self, schema):
         schema.update({
-            'due_date': [tk.get_validator('ignore_missing'),
-                         tk.get_converter('convert_to_extras')],
-            'due_date_info': [tk.get_validator('ignore_missing'),
-                              tk.get_converter('convert_to_extras')]
+            'compiled_at': [tk.get_validator('ignore_missing'),
+                            tk.get_converter('convert_to_extras')],
+            'expires_on': [tk.get_validator('ignore_missing'),
+                           tk.get_converter('convert_to_extras')],
+            'expiration_info': [tk.get_validator('ignore_missing'),
+                                tk.get_converter('convert_to_extras')],
+            '__after': [tk.get_validator('either_compiled_at_or_expires_on')]
         })
 
         return schema
@@ -45,10 +48,12 @@ class ExtrafieldsPlugin(p.SingletonPlugin, tk.DefaultDatasetForm):
     def show_package_schema(self):
         schema = super(ExtrafieldsPlugin, self).show_package_schema()
         schema.update({
-            'due_date': [tk.get_converter('convert_from_extras'),
-                         tk.get_validator('ignore_missing')],
-            'due_date_info': [tk.get_converter('convert_from_extras'),
-                              tk.get_validator('ignore_missing')],
+            'compiled_at': [tk.get_converter('convert_from_extras'),
+                            tk.get_validator('ignore_missing')],
+            'expires_on': [tk.get_converter('convert_from_extras'),
+                           tk.get_validator('ignore_missing')],
+            'expiration_info': [tk.get_converter('convert_from_extras'),
+                                tk.get_validator('ignore_missing')],
 
         })
         return schema
@@ -68,9 +73,7 @@ class ExtrafieldsPlugin(p.SingletonPlugin, tk.DefaultDatasetForm):
         tk.add_public_directory(config_, 'public')
         tk.add_resource('fanstatic', 'extrafields')
 
-    def get_helpers(self):
-        helpers = {
-            'extrafields_dataset_expired': dataset_expired
+    def get_validators(self):
+        return {
+            'either_compiled_at_or_expires_on': either_compiled_at_or_expires_on
         }
-
-        return helpers

@@ -1,20 +1,28 @@
 {% ckan_extends %}
 
 {% block package_metadata_fields %}
-  {{ form.input('due_date',
+  {{ form.input('compiled_at',
                 type='date',
                 classes=['control-full', 'control-medium'],
-                label=_('Dataset due date'),
-                id='field-due_date',
-                value=data.due_date,
-                error=errors.due_date)
+                label=_('Compiled at'),
+                id='field-compiled_at',
+                value=data.compiled_at,
+                error=errors.compiled_at)
   }}
 
-  {{ form.markdown('due_date_info',
-                   id='field-due_date_info',
-                   label=_('Due date info'),
-                   placeholder=_('Explanation why this dataset expires on that due date'),
-                   value=data.due_date_info,
-                   error=errors.due_date_info)
+  {{ form.input('expires_on',
+                type='date',
+                classes=['control-full', 'control-medium'],
+                label=_('Expires on'),
+                id='field-expires_on',
+                value=data.expires_on,
+                error=errors.expires_on)
+  }}
+
+  {{ form.markdown('expiration_info',
+                   id='field-expiration_info',
+                   label=_('Expiration info'),
+                   value=data.expiration_info,
+                   error=errors.expiration_info)
   }}
 {% endblock %}

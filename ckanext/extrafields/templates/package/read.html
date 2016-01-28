@@ -1,15 +1,14 @@
 {% ckan_extends %}
 
 {% block package_additional_info %}
-  {% if pkg.due_date %}
-      {% if h.extrafields_dataset_expired(pkg.due_date) %}
+  {% if pkg.expires_on %}
+      {% if h.extrafields_dataset_expired(pkg.expires_on) %}
         <div class="alert-danger">
-          {# TODO: strftime for due_date #}
-          <p>{% trans %}This dataset has expired since{% endtrans %}: {{ pkg.due_date }}.</p>
+          <p>{% trans %}This dataset has expired since{% endtrans %}: {{ h.extrafields_dateformat(pkg.expires_on) }}.</p>
 
-          {% if pkg.due_date_info %}
+          {% if pkg.expiration_info %}
             <p>{% trans %}Here is the explanation: {% endtrans %}</p>
-            <p>{{ pkg.due_date_info }}
+            <p>{{ pkg.expiration_info }}
           {% endif %}
         </div>
       {% else %}
