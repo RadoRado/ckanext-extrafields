@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-extrafields 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-28 16:04+0000\n"
+"POT-Creation-Date: 2016-01-28 16:29+0000\n"
 "PO-Revision-Date: 2016-01-28 09:41+0000\n"
-"Last-Translator:  Radoslav Georgiev <radorado@hackbulgaria.com>\n"
+"Last-Translator: Radoslav Georgiev <radorado@hackbulgaria.com>\n"
 "Language-Team: bg <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
@@ -24,15 +24,15 @@ msgstr ""
 
 #: ckanext/extrafields/templates/package/read.html:7
 msgid "This dataset has expired since"
-msgstr ""
+msgstr "Този набор от данни не актуален! Информацията в него не е актуално от"
 
 #: ckanext/extrafields/templates/package/read.html:10
 msgid "Here is the explanation: "
-msgstr ""
+msgstr "Допълнително обяснение: "
 
-#: ckanext/extrafields/templates/package/read.html:17
-msgid "This dataset is fresh. Check expires on field in additionl info."
-msgstr ""
+#: ckanext/extrafields/templates/package/read.html:16
+msgid "This dataset is current! It expires on"
+msgstr "Този набор от данни е актуален! Актуалността на информацията в него изтича на"
 
 #: ckanext/extrafields/templates/package/snippets/additional_info.html:6
 #: ckanext/extrafields/templates/package/snippets/package_metadata_fields.html:7
@@ -49,6 +49,6 @@ msgstr "До коя дата са актуални данните?"
 msgid "Expiration info"
 msgstr "Допълнителна информация за актуалността на данните."
 
-#~ msgid "This dataset is fresh. Check due date in addition info "
-#~ msgstr ""
+#~ msgid "This dataset is fresh. Check expires on field in additionl info."
+#~ msgstr "Този набор от данни е актуален!"
 

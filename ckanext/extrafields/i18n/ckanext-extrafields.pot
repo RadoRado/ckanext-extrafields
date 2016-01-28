@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-extrafields 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-28 16:04+0000\n"
+"POT-Creation-Date: 2016-01-28 16:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,8 @@ msgstr ""
 msgid "Here is the explanation: "
 msgstr ""
 
-#: ckanext/extrafields/templates/package/read.html:17
-msgid "This dataset is fresh. Check expires on field in additionl info."
+#: ckanext/extrafields/templates/package/read.html:16
+msgid "This dataset is current! It expires on"
 msgstr ""
 
 #: ckanext/extrafields/templates/package/snippets/additional_info.html:6
