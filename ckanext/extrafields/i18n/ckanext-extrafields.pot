@@ -1,0 +1,51 @@
+# Translations template for ckanext-extrafields.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the ckanext-extrafields
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-extrafields 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-01-28 16:04+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: ckanext/extrafields/plugin.py:16
+msgid "Either compiled_at or expires_on must be present"
+msgstr ""
+
+#: ckanext/extrafields/templates/package/read.html:7
+msgid "This dataset has expired since"
+msgstr ""
+
+#: ckanext/extrafields/templates/package/read.html:10
+msgid "Here is the explanation: "
+msgstr ""
+
+#: ckanext/extrafields/templates/package/read.html:17
+msgid "This dataset is fresh. Check expires on field in additionl info."
+msgstr ""
+
+#: ckanext/extrafields/templates/package/snippets/additional_info.html:6
+#: ckanext/extrafields/templates/package/snippets/package_metadata_fields.html:7
+msgid "Compiled at"
+msgstr ""
+
+#: ckanext/extrafields/templates/package/snippets/additional_info.html:13
+#: ckanext/extrafields/templates/package/snippets/package_metadata_fields.html:16
+msgid "Expires on"
+msgstr ""
+
+#: ckanext/extrafields/templates/package/snippets/additional_info.html:20
+#: ckanext/extrafields/templates/package/snippets/package_metadata_fields.html:24
+msgid "Expiration info"
+msgstr ""
+
