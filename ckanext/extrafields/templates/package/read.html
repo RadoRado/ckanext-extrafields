@@ -13,9 +13,7 @@
         </div>
       {% else %}
         <div class="alert-success">
-         <p>
-         {% trans %}This dataset is fresh. Check due date in addition info {% endtrans %}
-         </p>
+          <p>{% trans %}This dataset is current! It expires on{% endtrans %}: {{ h.extrafields_dateformat(pkg.expires_on) }}.</p>
         </div>
       {% endif %}
   {% endif %}
