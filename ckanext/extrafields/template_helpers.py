@@ -13,10 +13,8 @@ def dataset_expired(date):
         return False
 
     today = datetime.date.today()
-    parsed = time.strptime(date, '%Y-%m-%d')
-    expiration_date = datetime.date(parsed.tm_year,
-                                    parsed.tm_mon,
-                                    parsed.tm_mday)
+    year, month, day = parse_date(date)
+    expiration_date = datetime.date(year, month, day)
 
     return today > expiration_date
 

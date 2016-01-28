@@ -1,6 +1,8 @@
 import ckan.plugins as p
 import ckan.plugins.toolkit as tk
 from template_helpers import TemplateHelpers
+from ckan.common import _, ungettext
+# from ckan.lib.plugins import DefaultTranslation
 
 
 def either_compiled_at_or_expires_on(key,
@@ -11,13 +13,15 @@ def either_compiled_at_or_expires_on(key,
     present_keys = filter(lambda key: flattened_data[key].strip() != "", keys)
 
     if len(present_keys) == 0:
-        raise tk.Invalid('Either compiled_at or expires_on must be present')
+        raise tk.Invalid(_('Either compiled_at or expires_on must be present'))
 
 
 class ExtrafieldsPlugin(p.SingletonPlugin,
                         tk.DefaultDatasetForm,
+                        # DefaultTranslation,
                         TemplateHelpers):
     p.implements(p.IConfigurer)
+    # p.implements(p.ITranslation)
     p.implements(p.IDatasetForm)
     p.implements(p.ITemplateHelpers)
     p.implements(p.IValidators)
