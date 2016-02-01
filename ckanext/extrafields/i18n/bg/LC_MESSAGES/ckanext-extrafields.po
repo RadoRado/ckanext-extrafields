@@ -20,7 +20,7 @@ msgstr ""
 
 #: ckanext/extrafields/plugin.py:16
 msgid "Either compiled_at or expires_on must be present"
-msgstr ""
+msgstr "Едно от двете полета трябва да бъдат попълнени: 'На коя дата са събрани данните?' или 'До коя дата са актуални данните?'"
 
 #: ckanext/extrafields/templates/package/read.html:7
 msgid "This dataset has expired since"
