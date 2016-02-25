@@ -32,7 +32,9 @@ msgstr "Допълнително обяснение: "
 
 #: ckanext/extrafields/templates/package/read.html:16
 msgid "This dataset is current! It expires on"
-msgstr "Този набор от данни е актуален! Актуалността на информацията в него изтича на"
+msgstr ""
+"Този набор от данни е актуален! Актуалността на информацията в него "
+"изтича на"
 
 #: ckanext/extrafields/templates/package/snippets/additional_info.html:6
 #: ckanext/extrafields/templates/package/snippets/package_metadata_fields.html:7
@@ -48,7 +50,4 @@ msgstr "До коя дата са актуални данните?"
 #: ckanext/extrafields/templates/package/snippets/package_metadata_fields.html:24
 msgid "Expiration info"
 msgstr "Допълнителна информация за актуалността на данните."
-
-#~ msgid "This dataset is fresh. Check expires on field in additionl info."
-#~ msgstr "Този набор от данни е актуален!"
 
